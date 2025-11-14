@@ -26,7 +26,25 @@ const getDatabase = () => {
     } return database;
 };
 
+const insertOne = async (collectionName, data) => {
+    const db = getDatabase();
+    return await db.db().collection(collectionName).insertOne(data);
+};
+
+const updateOne = async (collectionName, query, updateData) => {
+    const db = getDatabase();
+    return await db.db().collection(collectionName).updateOne(query, updateData);
+}
+
+const deleteOne = async (collectionName, query) => {
+    const db = getDatabase();
+    return await db.db().collection(collectionName).deleteOne(query);
+}
+
 module.exports = {
     initDb,
     getDatabase,
+    insertOne,
+    updateOne,
+    deleteOne
 };

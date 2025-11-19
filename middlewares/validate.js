@@ -1,26 +1,8 @@
-const validator = require('../helpers/validate');
-
-const saveUser = (req, res, next) => {
-  const validationRule = {
-    firstName: 'required|string',
-    lastName: 'required|string',
-    email: 'required|email',
-    favoriteColor: 'required|string',
-    birthday: 'string'
-  };
-  validator(req.body, validationRule, {}, (err, status) => {
-    if (!status) {
-      res.status(400).send({
-        success: false,
-        message: 'Validation failed',
-        data: err
-      });
-    } else {
-      next();
-    }
-  });
+const Validator = require('validatorjs');
+const validator = (body, rules, customMessages, callback) => {
+  const validation = new Validator(body, rules, customMessages);
+  validation.passes(() => callback(null, true));
+  validation.fails(() => callback(validation.errors, false));
 };
 
-module.exports = {
-  saveUser
-};
+module.exports = validator;

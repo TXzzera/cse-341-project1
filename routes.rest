@@ -1,7 +1,7 @@
 ###Get all users
 GET http://localhost:8082/users
 
-###Get a single user by ID
+###Get a single user by ID to see their details
 GET http://localhost:8082/users/690c0311e553ee794411c7b4
 
 ###Create a new user

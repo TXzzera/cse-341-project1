@@ -2,7 +2,6 @@ const mongodb = require('../data/database');
 const ObjectId = require('mongodb').ObjectId;
 
 const getAll = async (req, res) => {
-  //#swagger.tags = ['Users']
   try {
     const users = await mongodb
       .getDatabase()
@@ -21,7 +20,6 @@ const getAll = async (req, res) => {
 
 
 const getSingle = async (req, res) => {
-  //#swagger.tags = ['Users']
   try {
     if (!ObjectId.isValid(req.params.id)) {
       return res.status(400).json({ message: 'Must use a valid user id to find an user.' });

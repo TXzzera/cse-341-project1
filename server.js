@@ -1,5 +1,6 @@
 const express =  require ('express');
 const routes = require ('./routes/index.js');
+const swagger = require ('./routes/swagger.js');
 const mongodb =  require ('./data/database.js');
 const bodyparser = require ('body-parser');
 const cors = require('cors');
@@ -17,6 +18,7 @@ app.use((req,res,next) => {
   next();
 });
 app.use('/', routes);
+app.use('/swagger', swagger);
 
 process.on('uncaughtException', (err, origin) => {
   console.error(process.stderr.fd, `Caught exception: ${err}\n` + `Exception origin: ${origin}`);
